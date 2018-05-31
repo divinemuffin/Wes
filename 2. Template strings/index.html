@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>2. Strings</title>
+</head>
+<body>
+    
+</body>
+</html>
+
+<script>
+
+    function writeBooks(books){
+        return books.map(book => `<li> ${book} </li>`).join('');
+    }
+
+
+
+    const obj1 = {
+        name: 'Jacques',
+        secondName: 'Derrida',
+        country: 'France',
+        books: ['Specters of Marx', 'Archive Fever', 'Dissemination'],
+        about: "Professeur à l'École normale supérieure, puis directeur d'études à l'École des hautes études en sciences sociales, il a créé et développé l'école de pensée autour du déconstructionnisme. Dans la lignée de Freud et de Heidegger1, Derrida remet en question la phénoménologie et la métaphysique traditionnelle et introduit une nouvelle manière de penser les sciences humaines"
+    }
+
+
+    const string1 = `
+        <h1> About ${obj1.name} ${obj1.secondName} </h1>
+        <p> Hello, today I would like to tell you about ${obj1.secondName} </p>
+        <p> He was born at ${obj1.country} </p>
+        <p> Here are books he wrote: <ul> ${writeBooks(obj1.books)} </ul> </p>
+    `
+
+    document.write(string1);
+
+
+    function theFunction(...args){
+        console.dir(args);
+        args[0].forEach((element, index) => {
+            document.write( `${element}<mark>${args[index+1]  || ''}</mark>` );
+        });
+    }
+
+
+    function writeAbout({name='Random', secondName='Dude', country, books, about}) {
+    
+        theFunction`
+            <h1> About ${name} ${secondName} </h1>
+            <p> Hello, today I would like to tell you about ${secondName} </p>`
+            country? theFunction`<p> He was born at ${country} </p>`:'';
+    }
+
+    const jesus = {
+        name: 'Jesus', secondName: 'Christ', country: 'Bethlehem', books: ['Bible', 'Old Testament'],
+        about: "Presumably the God"
+    }
+
+    writeAbout(jesus);
+    writeAbout({});
+
+
+
+</script>
